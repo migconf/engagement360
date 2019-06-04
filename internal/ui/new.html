@@ -1,0 +1,165 @@
+<form id="newengform">
+    <h4>Start New Engagement</h4>
+
+    <div class="form-group row">
+        <label for="cust" class="col-sm-2 col-form-label">Customer</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="cust" name="custname" placeholder="Customer Name">
+        </div>
+    </div>
+
+    <fieldset class="form-group">
+        <div class="row">
+            <label class="col-form-label col-sm-2 pt-0">Delivery Method:</label>
+            <div class="col-sm-10">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="deliv_method" id="deliv_method_os" value="onsite">
+                    <label class="form-check-label" for="deliv_method_os">On Site</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="deliv_method" id="deliv_method_rm" value="remote">
+                    <label class="form-check-label" for="deliv_method_rm">Remote</label>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="form-group row">
+        <div class="col-sm-2">Engagements</div>
+
+        <div class="col-sm-10 border">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="et_arcws" name="et_arcws" value="ArchWS">
+                        <label class="form-check-label" for="et_arcws">Architecture Workshop</label>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control disabled" id="et_arcws_days" name="et_arcws_days" placeholder="# Days?"/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="et_phc" name="et_phc" value="PHC">
+                        <label class="form-check-label" for="et_phc">Production Health Check</label>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control disabled" id="et_phc_days" name="et_phc_days" placeholder="# Days?"/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="et_secws" name="et_secws" value="SedWS">
+                        <label class="form-check-label" for="et_secws">Security Workshop</label>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <input type="form-control" class="form-control disabled" id="et_secws_days" name="et_secws_days" placeholder="# Days?"/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="et_cjs" name="et_cjs" value="CJS">
+                        <label class="form-check-label" for="et_cjs">Cloud Jump Start</label>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control disabled" id="et_cjs_days" name="et_cjs_days" placeholder="# Days?"/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="et_deploy" name="et_deploy" value="Deploy">
+                        <label class="form-check-label" for="et_deploy">Deployment</label>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control disabled" id="et_deploy_days" name="et_deploy_days" placeholder="# Days?"/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="et_upgrade" name="et_upgrade" value="Upgrade">
+                        <label class="form-check-label" for="et_upgrade">Upgrade</label>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control disabled" id="et_upgrade_days" name="et_upgrade_days" placeholder="# Days?"/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="et_mdc" name="et_mdc" value="MDC">
+                        <label class="form-check-label" for="et_mdc">Multi-Datacenter (MDC)</label>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control disabled" id="et_mdc_days" name="et_mdc_days" placeholder="# Days?"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button id="createBtn" type="button" class="btn btn-primary">Create</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    // disable all
+    $("input[name$='_days']").prop("disabled", true);
+
+    enableDays("et_arcws");
+    enableDays("et_phc");
+    enableDays("et_secws");
+    enableDays("et_cjs");
+    enableDays("et_deploy");
+    enableDays("et_upgrade");
+    enableDays("et_mdc");
+
+    function enableDays(inId){
+        $("#"+inId).click(function () {
+                chkd = $(this).prop("checked");
+
+                if(chkd){
+                    $("#"+inId+"_days").prop("disabled", false);
+                    $("#"+inId+"_days").focus();
+                }
+                else{
+                    $("#"+inId+"_days").prop("disabled", true);
+                }
+            }
+        );
+    }
+    
+    $("#createBtn").click(function () {
+        $.ajax({
+            type: "POST",
+            url: "/createNew",
+            data: $("#newengform").serialize(),
+            dataType: "json",
+            success: function (data) {
+                updateMainDiv(data.next);
+            },
+            error: function (data) {
+                alert("error data: "+ data.responseJSON.errmsg);
+            }
+        });
+    });
+</script>

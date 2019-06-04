@@ -1,0 +1,133 @@
+<div class="row">
+    <div class="col-12">
+        <h4>Pre Engagement Call Prep</h4>
+        <p>
+            Gather information about customer & engagement before Pre-Engagement call.
+            <br/>
+        </p>
+    </div>
+</div>
+
+<form>
+    <!-- cluster config -->
+    <div class="card">
+        <div class="card-header">
+            Cluster Details
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label>Clusters</label>
+                <input type="text" class="form-control"  placeholder="How Many Clusters?">
+            </div>
+            <div class="form-group">
+                <label>On-Prem / Cloud</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" value="option1">
+                    <label class="form-check-label">On-Prem</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" value="option2">
+                    <label class="form-check-label">Cloud</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>All same?</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" value="option1">
+                    <label class="form-check-label">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" value="option2">
+                    <label class="form-check-label">No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Brokers</label>
+                <input type="text" class="form-control" placeholder="How many brokers?">
+            </div>
+            <div class="form-group">
+                <label>Zookeeper</label>
+                <input type="text" class="form-control" placeholder="How many Zookeepers?">
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">Components in use</div>
+        <div class="card-body">
+            <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="">
+            <label class="form-check-label">Connect</label>
+        </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="">
+                <label class="form-check-label">KSql</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="">
+                <label class="form-check-label">Control Center</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="">
+                <label class="form-check-label">Rest Proxy</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="">
+                <label class="form-check-label">Schema Registry</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            Security Info
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="">
+                    <label class="form-check-label">SSL</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="">
+                    <label class="form-check-label">SASL</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="">
+                    <label class="form-check-label">Kerberos</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="">
+                    <label class="form-check-label">ACLs</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">External Links</div>
+        <div class="card-body">
+            <input type="text" class="form-control"  placeholder="Pre-Engagement Survey Link"><br/>
+            <input type="text" class="form-control"  placeholder="Salesforce Link"><br/>
+            <input type="text" class="form-control"  placeholder="Wiki Profile">
+        </div>
+    </div>
+
+    <div class="form-group mt-1">
+        <button type="button" id="savebtn" class="btn btn-primary">Save</button>
+        <button type="button" id="cnlbtn" class="btn btn-primary">Cancel</button>
+    </div>
+</form>
+
+<script>
+    $("#savebtn").click(function(e){
+        e.preventDefault();
+    });
+
+    $("#cnlbtn").click(function (e) {
+        e.preventDefault();
+        updateMainDiv("engmain?eid="+e.target.value);
+    });
+</script>
+

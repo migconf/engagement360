@@ -1,0 +1,23 @@
+<!-- menu row -->
+<div class="row pb-1" style="border-bottom: 3px solid #007bff">
+    <div class="col">
+        <!-- menu -->
+        <button id="homebtn" class="btn btn-primary" type="button">Home</button>
+        <button id="myengs" class="btn btn-primary" type="button">My Engagements</button>
+        <button id="newbtn" class="btn btn-primary" type="button">New</button>
+    </div>
+</div>
+
+<script>
+    // menu
+    $("#homebtn").click(function () {
+        updateMainDiv("welcome")
+    });
+    $("#newbtn").click(function () {
+        updateMainDiv("new");
+    });
+
+    $("#myengs").click(function () {
+        updateMainDiv("myengs");
+    });
+</script>

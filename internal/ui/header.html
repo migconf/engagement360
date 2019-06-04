@@ -1,0 +1,18 @@
+<!-- Header -->
+<div class="row pb-1" style="border-bottom: 3px solid #007bff">
+    <div class="col-10">
+        <h1 id="hdr">Engagement 360 (poc)</h1>
+    </div>
+    <div class="col-2">
+        <div id="ldr" class="spinner-grow text-primary mt-3 float-right" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#hdr").click(function (e) {
+        e.preventDefault();
+        updateMainDiv("welcome")
+    });
+</script>

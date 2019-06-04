@@ -1,0 +1,173 @@
+<div class="row">
+    <div class="col-12">
+        <h2>Pre Engagement Call Prep</h2>
+        <p>
+            Gather information about customer & engagement before Pre-Engagement call.
+        </p>
+        <h4>Customer: {{.Customer}}</h4>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <span>Applies to:</span>
+        {{range .EngagementList}}
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="et_{{.Name}}" value="{{.Name}}">
+                <label class="form-check-label" for="et_{{.Name}}">{{.Name}}</label>
+            </div>
+        {{end}}
+    </div>
+</div>
+
+<form>
+    <!-- cluster config -->
+    <div class="card">
+        <div class="card-header">
+            Core Cluster Details
+        </div>
+
+        <div class="card-body">
+
+            <div class="form-row">
+                <label for="ncid" class="col-3 align-middle">No. of Cluster</label>
+                <input id="ncid" type="text" class="col-2 form-control"  placeholder="Clusters?">
+            </div>
+
+            <div class="form-row mt-2">
+                <div class="form-group col-3">
+                    <label>On-Prem / Cloud</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" value="option1">
+                        <label class="form-check-label">On-Prem</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" value="option2">
+                        <label class="form-check-label">Cloud</label>
+                    </div>
+                </div>
+
+                <div class="form-group col-3">
+                    <label>All same?</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" value="option1">
+                        <label class="form-check-label">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" value="option2">
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row mt-6">
+                <div class="col-5">
+                    <div class="form-row">
+                        <label class="col-7">Brokers</label>
+                        <input type="text" class="col-5 form-control" placeholder="Brokers?">
+                    </div>
+
+                    <div class="form-row">
+                        <label class="col-7">Zookeeper</label>
+                        <input type="text" class="col-5 form-control" placeholder="Zookeepers?">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label class="col-6 pl-0 ml-1">Colocated?</label>
+                    <div class="form-check col-3 ml-1">
+                        <input class="form-check-input" type="radio" name="exampleRadios" value="option2">
+                        <label class="form-check-label">No</label>
+                    </div>
+                    <div class="form-check col-3 ml-1">
+                        <input class="form-check-input" type="radio" name="exampleRadios" value="option1">
+                        <label class="form-check-label">Yes</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+
+        <div class="card-header">Other...</div>
+        <div class="card-body">
+
+            <div class="form-row">
+
+                <div class="col-4">
+                    <div class="text-white bg-dark p-1">Services</div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label">Connect</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label">KSql</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label">Control Center</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label">Rest Proxy</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label">Schema Registry</label>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="text-white bg-dark p-1">Security</div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label">SSL</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label">SASL</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label">Kerberos</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label">ACLs</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">External Links</div>
+        <div class="card-body">
+            <input type="text" class="form-control"  placeholder="Pre-Engagement Survey Link"><br/>
+            <input type="text" class="form-control"  placeholder="Salesforce Link"><br/>
+            <input type="text" class="form-control"  placeholder="Wiki Profile">
+        </div>
+    </div>
+
+    <!-- pass through-->
+    <input type="hidden" name="eid" value="{{.EID}}"/>
+
+    <div class="form-group mt-1">
+        <button type="button" id="savebtn" class="btn btn-primary">Save</button>
+        <button type="button" id="cnlbtn" class="btn btn-primary" value="{{.EID}}">Cancel</button>
+    </div>
+</form>
+
+<script>
+    $("#savebtn").click(function(e){
+        e.preventDefault();
+    });
+
+    $("#cnlbtn").click(function (e) {
+        e.preventDefault();
+        updateMainDiv("engmain?eid="+e.target.value);
+    });
+</script>
+

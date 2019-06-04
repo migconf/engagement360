@@ -1,0 +1,98 @@
+<div class="row mb-1">
+    <div class="col border border-primary">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th colspan="4">
+                        <h4>Customer Engagement</h4>
+                    </th>
+                </tr>
+            </thead>
+            <tr>
+                <th width="10%">Customer: </th>
+                <td>{{ .Customer }}</td>
+            </tr>
+            <tr>
+                <th>Delivery: </th>
+                <td>{{.Delivery}}</td>
+            </tr>
+            <tr>
+                <th>Engaements: </th>
+                <td>
+                    {{range .EngNames}}
+                        {{ printf "%s" . }}<br/>
+                    {{end}}
+                </td>
+            </tr>
+            <tr>
+                <th># Days: </th>
+                <td>{{.TotalDays}}</td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+<div class="row mt-1">
+
+    <div class="col-12">
+        <h4 class="bg-secondary p-1 text-white">Pre-Engagement</h4>
+    </div>
+
+    <div class="col-12">
+        <div class="card-group">
+            <div class="card" style="width: 15rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Prep</h5>
+                    <p class="card-text">
+                        Prepare for the Pre-Engaement Call. Gather facts such as attendee info, cluster/arch informiation,
+                        etc. All the stuff you need to do before the call with the customer.
+                    </p>
+
+                    <button type="button" id="prePrepStart" class="btn btn-primary">Start</button>
+
+                </div>
+            </div>
+
+            <div class="card" style="width: 15rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Meeting</h5>
+                    <p class="card-text">
+                        Conduct the actual call with the customer.
+                    </p>
+
+                    <button type="button" id="preEngMeetStart" class="btn btn-primary">Start</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{range .EngagementList}}
+        <div class="col-12">
+            <h4 class="bg-secondary p-1 text-white">{{.Name}}</h4>
+
+            <div class="col-12">
+                <div class="card-group">
+                    {{range .EngDays}}
+                        <div class="card" style="width: 15rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Day: {{ .SessionDay }}</h5>
+                                <p class="card-text">Session Day</p>
+
+                                <button type="button" class="btn btn-primary">Edit</button>
+                            </div>
+                        </div>
+                    {{end}}
+                </div>
+            </div>
+        </div>
+    {{end}}
+
+</div>
+
+<script>
+    $("#prePrepStart").click(function (e) {
+        e.preventDefault();
+        updateMainDiv("pre-eng-prep?eid={{.EID}}");
+    });
+</script>

@@ -1,0 +1,19 @@
+<div class="row">
+    <h4>My Engagements</h4>
+</div>
+
+<div class="row">
+    <div class="list-group">
+        {{range .englist}}
+            <a id="{{.EID}}" href="#" class="list-group-item list-group-item-action englistitem">{{.Customer}}</a>
+
+        {{end}}
+    </div>
+</div>
+
+<script>
+    $('.englistitem').click(function (e) {
+        e.preventDefault();
+        updateMainDiv("engmain?eid="+e.target.id)
+    });
+</script>

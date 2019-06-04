@@ -1,0 +1,67 @@
+<!doctype html>
+
+<html lang="en">
+
+    <head>
+        <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- prevent caching -->
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+        <title>Engagement 360 (poc)</title>
+
+        <script>
+            var pth = "/";
+            function updateHeader(url) {
+                $("#header").load(pth+url);
+            }
+            function updateMenu(url) {
+                $("#menu").load(pth+url);
+            }
+
+            function updateMainDiv(url) {
+                $("#ldr").show();
+                $.get(pth + url, function(data){
+                    $("#content-div").html(data);
+                }).always(function() {
+                    $("#ldr").hide();
+                });
+            }
+        </script>
+    </head>
+
+    <body>
+        <div class="container-fluid">
+
+            <!-- Header -->
+            <div id="header" class="mb-1"></div>
+
+            <!-- menu -->
+            <div id="menu"></div>
+
+            <!-- content div -->
+            <div id="content-div" style="padding: 10px"></div>
+        </div>
+
+        <script src="/js/jquery-3.4.1.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+    </body>
+
+    <script>
+        $("#ldr").hide();
+
+        updateHeader("header");
+        updateMenu("menu");
+        updateMainDiv("welcome");
+    </script>
+
+</html>
