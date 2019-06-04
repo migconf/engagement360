@@ -1,6 +1,6 @@
 # engagement360
 
-POC App/System for SA/CE's idea to help with customer engagements.
+POC App/System for SA/CE's to help with customer engagements.
 
 Links:
 * [Wiki Documentation](https://confluentinc.atlassian.net/wiki/spaces/SER/pages/890995935/Engagement+360+POC)
