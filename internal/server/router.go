@@ -1,13 +1,13 @@
 package server
 
 import (
-	"enagement360/internal/controller"
+	"engagement360/internal/controller"
 	"fmt"
 	"github.com/gin-gonic/gin"
 )
 
 type PssRouter struct {
-	rtr       *gin.Engine
+	rtr *gin.Engine
 }
 
 func (pr PssRouter) Init() error {

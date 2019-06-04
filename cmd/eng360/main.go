@@ -1,12 +1,11 @@
 package main
 
 import (
-	"enagement360/internal/server"
+	"engagement360/internal/server"
 	"fmt"
 )
 
-
-func main(){
+func main() {
 	fmt.Println("Starting EngagementHelper server...")
 
 	// setup router

@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"enagement360/internal/models"
+	"engagement360/internal/models"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"log"
@@ -14,11 +14,11 @@ import (
 var engCtrl *EngaementController
 
 type EngaementController struct {
-	psRtr *gin.Engine
+	psRtr    *gin.Engine
 	engStore map[int64]models.Engagement
 }
 
-func EngagementControllerInstance(r *gin.Engine){
+func EngagementControllerInstance(r *gin.Engine) {
 	if engCtrl == nil {
 		engCtrl = &EngaementController{
 			psRtr: r,
@@ -31,64 +31,64 @@ func EngagementControllerInstance(r *gin.Engine){
 	log.Printf("EngineController initialized...")
 }
 
-func (ec *EngaementController) initData(){
+func (ec *EngaementController) initData() {
 	ec.engStore = make(map[int64]models.Engagement)
 
 	ec.engStore[1000] = models.Engagement{
-		EID:                    1000,
-		Customer:               "Acme Bank",
-		Delivery:               "onsite",
+		EID:      1000,
+		Customer: "Acme Bank",
+		Delivery: "onsite",
 		EngagementList: []models.EngagementType{
 			{
 				Name: "ArchWS",
 				Days: 2,
 				EngDays: []models.EngDay{
-					{SessionDay:1, DayAgenda: &models.Agenda{}},
-					{SessionDay:2, DayAgenda: &models.Agenda{}},
+					{SessionDay: 1, DayAgenda: &models.Agenda{}},
+					{SessionDay: 2, DayAgenda: &models.Agenda{}},
 				},
 			},
 			{
 				Name: "PHC",
 				Days: 2,
 				EngDays: []models.EngDay{
-					{SessionDay:1, DayAgenda: &models.Agenda{}},
+					{SessionDay: 1, DayAgenda: &models.Agenda{}},
 				},
 			},
 			{
 				Name: "SecWS",
 				Days: 1,
 				EngDays: []models.EngDay{
-					{SessionDay:1, DayAgenda: &models.Agenda{}},
+					{SessionDay: 1, DayAgenda: &models.Agenda{}},
 				},
 			},
 		},
 	}
 
 	ec.engStore[2000] = models.Engagement{
-		EID:                    2000,
-		Customer:               "Acme Games",
-		Delivery:               "remote",
-		PrePrepStarted:         false,
+		EID:            2000,
+		Customer:       "Acme Games",
+		Delivery:       "remote",
+		PrePrepStarted: false,
 		EngagementList: []models.EngagementType{
 			{
 				Name: "MDC",
 				Days: 1,
 				EngDays: []models.EngDay{
-					{SessionDay:1, DayAgenda: &models.Agenda{}},
+					{SessionDay: 1, DayAgenda: &models.Agenda{}},
 				},
 			},
 			{
 				Name: "SecWS",
 				Days: 1,
 				EngDays: []models.EngDay{
-					{SessionDay:1, DayAgenda: &models.Agenda{}},
+					{SessionDay: 1, DayAgenda: &models.Agenda{}},
 				},
 			},
 			{
 				Name: "Upgrade",
 				Days: 1,
 				EngDays: []models.EngDay{
-					{SessionDay:1, DayAgenda: &models.Agenda{}},
+					{SessionDay: 1, DayAgenda: &models.Agenda{}},
 				},
 			},
 		},
@@ -131,7 +131,7 @@ func (ec *EngaementController) loadRoutes() {
 	})
 
 	ec.psRtr.GET("/pre-eng-prep", func(ctx *gin.Context) {
-		eidStr := ctx.Query("eid");
+		eidStr := ctx.Query("eid")
 		fmt.Printf("eid = %s\n", eidStr)
 
 		eid, _ := strconv.Atoi(eidStr)
@@ -144,7 +144,6 @@ func (ec *EngaementController) loadRoutes() {
 		for k, v := range ctx.Request.PostForm {
 			fmt.Printf("k/v = %s | %s", k, v)
 		}
-
 
 	})
 }
@@ -159,9 +158,9 @@ func (ec *EngaementController) createNewEngatement(fv *url.Values) (int64, error
 
 	eng := models.Engagement{
 		PrePrepStarted: false,
-		Delivery: delivMethod,
-		Customer: custName,
-		EID: int64(len(ec.EngList()) + 1000 + 1),
+		Delivery:       delivMethod,
+		Customer:       custName,
+		EID:            int64(len(ec.EngList()) + 1000 + 1),
 		EngagementList: selectedEngs,
 	}
 
@@ -169,10 +168,10 @@ func (ec *EngaementController) createNewEngatement(fv *url.Values) (int64, error
 	return eng.EID, nil
 }
 
-func (ec *EngaementController) extractEngagementTypes(fv *url.Values) ([]models.EngagementType,error) {
+func (ec *EngaementController) extractEngagementTypes(fv *url.Values) ([]models.EngagementType, error) {
 	var selectedEngs []models.EngagementType
 
-	for k,v := range *fv {
+	for k, v := range *fv {
 
 		var et models.EngagementType
 
@@ -181,11 +180,11 @@ func (ec *EngaementController) extractEngagementTypes(fv *url.Values) ([]models.
 				et.Name = v[0]
 
 				nk := fmt.Sprintf("%s_days", k)
-				et.Days,_ = strconv.Atoi(fv.Get(nk))
+				et.Days, _ = strconv.Atoi(fv.Get(nk))
 
 				for i := 0; i < et.Days; i++ {
 					ed := models.EngDay{
-						SessionDay: i+1,
+						SessionDay: i + 1,
 					}
 
 					et.EngDays = append(et.EngDays, ed)
@@ -208,6 +207,6 @@ func (ec *EngaementController) EngList() []models.Engagement {
 	return el
 }
 
-func (ec *EngaementController) AddEngagement(en models.Engagement){
+func (ec *EngaementController) AddEngagement(en models.Engagement) {
 	ec.engStore[en.EID] = en
 }
